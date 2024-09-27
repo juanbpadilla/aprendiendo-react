@@ -1,35 +1,10 @@
 import { useState } from "react"
 import confetti from "canvas-confetti"
 
-const TURNS = {
-  X: 'x',
-  O: 'o'
-}
-
-const Square = ({ children, isSelected, updateBoard, index }) => {
-  const className = `square ${isSelected ? 'is-selected' : ''}`
-
-  const handleClick = () => {
-    updateBoard(index)
-  }
-
-  return (
-    <div onClick={handleClick} className={className}>
-      {children}
-    </div>
-  )
-}
-
-const WINNER_COMBOS = [
-  [0,1,2],
-  [3,4,5],
-  [6,7,8],
-  [0,3,6],
-  [1,4,7],
-  [2,5,8],
-  [0,4,8],
-  [2,4,6]
-]
+import { Square } from "./components/Square.jsx"
+import { TURNS } from "./constants.js"
+import { checkWinnerFrom, checkEndGame } from "./logic/board.js"
+import { WinnerModal } from "./components/WinnerModal.jsx"
 
 function App() {
   const [board, setBoard] = useState(
@@ -40,35 +15,11 @@ function App() {
   // null es q no hay ganador, false es q hay un empate
   const [winner, setWinner] = useState(null)
 
-  const checkWinner = (boardToCheck) => {
-    // revisamos todas las combinaciones ganadoras
-    // para ver si X u O ganó
-    for (const combo of WINNER_COMBOS) {
-      const [a,b,c] = combo
-      if (
-        boardToCheck[a] && // 0 -> x u o
-        boardToCheck[a] === boardToCheck[b] && // 0 y 3 -> x -> x u o -> o
-        boardToCheck[a] === boardToCheck[c]
-      ) {
-        return boardToCheck[a] // x u o
-      }
-    }
-    // si no hay ganador
-    return null
-  }
-
   const resetGame = () => {
     setBoard(Array(9).fill(null))
     setTurn(TURNS.X)
     setWinner(null)
-  }
-
-  const checkEndGame = (newBoard) => {
-    // revisamos si hay un empate
-    // si no hay mas espacios vacíos
-    // en el tablero
-    return newBoard.every((square) => square != null)
-  }
+  }  
 
   const updateBoard = (index) => {
     // no actualizamos esta posición
@@ -89,7 +40,7 @@ function App() {
     setTurn(newTurn)
     // REVISAR SI HAY UN GANADOR
     // enviamos al checkWinner la copia del board ya q este aún no se actualiza
-    const newWinner = checkWinner(newBoard)
+    const newWinner = checkWinnerFrom(newBoard)
     if (newWinner) {
       confetti()
       setWinner(newWinner)
@@ -127,30 +78,7 @@ function App() {
         </Square>
       </section>
 
-      {
-        winner != null && (
-          <section className="winner">
-            <div className="text">
-              <h2>
-                {
-                  winner === false
-                    ? 'Empate'
-                    : 'Ganó'
-                }
-              </h2>
-
-              <header className="win">
-                {winner && <Square>{winner}</Square>}
-              </header>
-
-              <footer>
-                <button onClick={resetGame}>Empezar de nuevo</button>
-              </footer>
-            </div>
-          </section>
-        )
-          
-      }
+      <WinnerModal resetGame={resetGame} winner={winner} />
     </main>
   )
 }
