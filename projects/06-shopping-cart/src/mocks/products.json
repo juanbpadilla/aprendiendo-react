@@ -78,7 +78,7 @@
          "stock": 123,
          "brand": "OPPO",
          "category": "smartphones",
-         "thumbnail": "https://media.cnn.com/api/v1/images/stellar/prod/220609090511-dell-xps-13-2022-1.jpg?c=16x9&q=h_720,w_1280,c_fill",
+         "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJELGEo3uDwUN-szu77rrJZdsanNYOySlZVQ&s",
          "images": [
             "https://cdn.dummyjson.com/products/images/smartphones/Oppo%20F19%20Pro%20Plus/1.png",
             "https://cdn.dummyjson.com/products/images/smartphones/Oppo%20F19%20Pro%20Plus/2.png",
@@ -95,7 +95,7 @@
          "stock": 32,
          "brand": "Huawei",
          "category": "smartphones",
-         "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbt9hT6yH_8X-MQQMPgGl_EIJ948pTVglbmvsVwPQAxLXH-EsBF4d6yBokVukLmAvkPes&usqp=CAU",
+         "thumbnail": "https://cdn.computerhoy.com/sites/navi.axelspringer.es/public/media/image/2019/03/huawei-p30-lite_0.jpg?tf=1200x",
          "images": [
             "https://cdn.dummyjson.com/products/images/smartphones/Oppo%20K1/1.png",
             "https://cdn.dummyjson.com/products/images/smartphones/Oppo%20K1/2.png",
@@ -130,7 +130,7 @@
          "stock": 94,
          "brand": "Apple",
          "category": "smartphones",
-         "thumbnail": "https://cdn.24net.cz/1/obrazek/ikonka-353535",
+         "thumbnail": "https://i5.walmartimages.com/seo/Restored-iPhone-5s-16GB-Space-Gray-AT-T-Refurbished_f87d0a73-9172-4291-9092-f8a5a79851fd_1.f296a46dad5e579f690e29f3b8617a1f.jpeg",
          "images": [
             "https://cdn.dummyjson.com/products/images/smartphones/iPhone%205s/1.png",
             "https://cdn.dummyjson.com/products/images/smartphones/iPhone%205s/2.png",
