@@ -1,7 +1,10 @@
 import { useState, useId } from 'react'
 import './Filters.css'
+import { useFilters } from '../hooks/useFilters'
 
-export function Filters({ onChange }) {
+export function Filters() {
+	const { setFilters } = useFilters()
+	
 	const [minPrice, setMinPrice] = useState(0)
 	const minPriceFilterId = useId()
 	const categoryFilterId = useId()
@@ -10,7 +13,7 @@ export function Filters({ onChange }) {
 		// aquí algo HUELE mal 🤔
 		// DOS FUENTES DE LA VERDAD
 		setMinPrice(event.target.value)
-		onChange(prevState => ({
+		setFilters(prevState => ({
 			...prevState,
 			minPrice: event.target.value
 		}))
@@ -20,7 +23,7 @@ export function Filters({ onChange }) {
 		// ⬇️ ESTO HUELE MAL
 		// estamos pasando la función actualizar estado
 		// nativa de React a un componente hijo
-		onChange(prevState => ({
+		setFilters(prevState => ({
 			...prevState,
 			category: event.target.value
 		}))
