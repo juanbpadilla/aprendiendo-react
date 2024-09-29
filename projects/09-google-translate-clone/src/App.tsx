@@ -4,6 +4,7 @@ import './App.css'
 import { useStore } from './hooks/useStore';
 import { AUTO_LANGUAGE } from './constants';
 import { ArrowsIcon } from './components/Icons';
+import { LanguageSelector } from './components/LanguageSelector';
 
 
 
@@ -15,7 +16,7 @@ function App() {
 
       <Row>
         <Col>
-          <h2>From</h2>
+          <LanguageSelector />
           {fromLanguage}
         </Col>
 
@@ -26,7 +27,7 @@ function App() {
         </Col>
 
         <Col>
-          <h2>To</h2>
+          <LanguageSelector />
           {toLanguage}
         </Col>
       </Row>
