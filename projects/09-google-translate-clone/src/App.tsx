@@ -1,16 +1,29 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col, Button, Form, Stack } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css'
+import { Container, Row, Col, Button, Stack } from 'react-bootstrap'
 import './App.css'
-import { useStore } from './hooks/useStore';
-import { AUTO_LANGUAGE } from './constants';
-import { ArrowsIcon } from './components/Icons';
-import { LanguageSelector } from './components/LanguageSelector';
-import { SectionType } from './types.d';
+import { useStore } from './hooks/useStore'
+import { AUTO_LANGUAGE } from './constants'
+import { ArrowsIcon } from './components/Icons'
+import { LanguageSelector } from './components/LanguageSelector'
+import { SectionType } from './types.d'
+import { TextArea } from './components/TextArea'
 
 
 
 function App() {
-  const { fromLanguage, toLanguage, interchangeLanguages, setFromLanguage, setToLanguage } = useStore()
+  const {
+    loading,
+    fromLanguage,
+    toLanguage,
+    fromText,
+    result,
+    interchangeLanguages,
+    setFromLanguage,
+    setToLanguage,
+    setFromText,
+    setResult
+
+  } = useStore()
   return (
     <Container fluid >
       <h2>Google Translate</h2>
@@ -18,16 +31,15 @@ function App() {
       <Row>
         <Col>
           <Stack gap={2}>
-            <LanguageSelector 
+            <LanguageSelector
               type={SectionType.From}
               value={fromLanguage}
-              onChange={setFromLanguage} 
+              onChange={setFromLanguage}
             />
-            <Form.Control 
-              as='textarea'
-              placeholder='Introducir texto'
-              autoFocus
-              style={{ height: '150px' }}
+            <TextArea
+              type={SectionType.From}
+              value={fromText}
+              onChange={setFromText}
             />
           </Stack>
         </Col>
@@ -39,18 +51,19 @@ function App() {
         </Col>
 
         <Col>
-        <Stack gap={2}>
-          <LanguageSelector 
-            type={SectionType.To}
-            value={toLanguage}
-            onChange={setToLanguage}
-          />
-          <Form.Control 
-            as='textarea'
-            placeholder='Traducción'
-            style={{ height: '150px' }}
-          />
-        </Stack>
+          <Stack gap={2}>
+            <LanguageSelector
+              type={SectionType.To}
+              value={toLanguage}
+              onChange={setToLanguage}
+            />
+            <TextArea
+              loading={loading}
+              type={SectionType.To}
+              value={result}
+              onChange={setResult}
+            />
+          </Stack>
         </Col>
       </Row>
     </Container>

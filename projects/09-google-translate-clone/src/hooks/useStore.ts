@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { type State, type Action, Language, FromLanguage } from '../types.d';
+import { type State, type Action, type Language, type FromLanguage } from '../types.d';
 import { AUTO_LANGUAGE } from '../constants';
 
 const initialState: State = {
@@ -42,7 +42,7 @@ function reducer(state: State, action: Action) {
     return {
       ...state,
       loading: true,
-      toText: action.payload,
+      fromText: action.payload,
       result: ''
     }
   }
